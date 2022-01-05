@@ -31,6 +31,16 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// TextField(
+// controller: controller,
+// onChanged: (text) { numNeeded = text as int; },
+// decoration: const InputDecoration(labelText: "# needed"),
+// keyboardType: TextInputType.number,
+// inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
+// ),
+
+
 //
 // class MyHomePage extends StatefulWidget {
 //   const MyHomePage({Key? key, required this.title}) : super(key: key);

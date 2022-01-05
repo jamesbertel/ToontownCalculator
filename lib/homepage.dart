@@ -14,40 +14,47 @@ class _HomePage extends State<HomePage> {
   int numObtained = 0;
   int numNeeded = 0;
   TextEditingController controller = TextEditingController();
+  int output = 0;
+
     // controller.addListener();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Toontown Calculator'),
+      ),
       body: Center(
         child: Column(
-             children: <Widget>[
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+          children: [
 
-               //num obtained
-               TextField(
-                 // controller: controller,
-                 onChanged: (text) { numObtained = text as int; },
-                 decoration: const InputDecoration(labelText: "# obtained"),
-                 keyboardType: TextInputType.number,
-                 inputFormatters: <TextInputFormatter>[
-                   FilteringTextInputFormatter.digitsOnly
-                 ],
-               ),
+          //select cog type
+          Column(
+              children: const [
+                Text('Select cog type:'),
+                Text('ENTER SPINNER HERE'),
+              ]),
 
-               //num needed
-               TextField(
-                 // controller: controller,
-                 onChanged: (text) { numNeeded = text as int; },
-                 decoration: const InputDecoration(labelText: "# needed"),
-                 keyboardType: TextInputType.number,
-                 inputFormatters: <TextInputFormatter>[
-                   FilteringTextInputFormatter.digitsOnly
-                 ],
-               )
+          //get num obtained
+          Row(
+            children:  const <Widget>[
+              Text('Enter total # credit obtained: '),
+              Text('TEXTFIELD HERE'),
+            ]),
 
-             ],
+          //get num needed
+          Row(children:  const [
+            Text('Enter total # credit needed: '),
+            Text('TEXTFIELD HERE'),
+          ]),
+
+          ]
         )
       )
+
     );
   }
 }
+
