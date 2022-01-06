@@ -13,10 +13,10 @@ class _HomePage extends State<HomePage> {
 
   int numObtained = 0;
   int numNeeded = 0;
-  TextEditingController controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   int output = 0;
 
-    // controller.addListener();
+  //_controller.addListener();
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,10 @@ class _HomePage extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Toontown Calculator'),
       ),
-      body: Center(
-        child: Column(
+      body: Padding(
+        padding: const EdgeInsets.all(25),
+        child: Center(
+          child: Column(
             // crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -45,14 +47,21 @@ class _HomePage extends State<HomePage> {
             ]),
 
           //get num needed
-          Row(children:  const [
-            Text('Enter total # credit needed: '),
-            Text('TEXTFIELD HERE'),
+          Row(children:   [
+            const Text('Enter total # credit needed: '),
+            //Text('TEXTFIELD HERE'),
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Label Test',
+                hintText: 'Hint Test',
+              ),
+            )
           ]),
 
           ]
         )
-      )
+      ))
 
     );
   }
