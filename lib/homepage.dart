@@ -30,13 +30,11 @@ class _HomePage extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Toontown Calculator'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(25),
-        child: Center(
+      body: Center(
           child: Column(
             // crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
 
           //select cog type
           Column(
@@ -74,7 +72,7 @@ class _HomePage extends State<HomePage> {
             ]),
 
           //get num needed
-          Row(children:   [
+          Row(children: const <Widget> [
             const Text('Enter total # credit needed: '),
             const Text('TEXTFIELD HERE'),
 
@@ -82,9 +80,10 @@ class _HomePage extends State<HomePage> {
 
           ]
         )
-      ))
-
+      )
     );
+
+
   }
 }
 
