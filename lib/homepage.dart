@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -10,8 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
-
-  String cogtype = 'Bossbot';
+  String cogtype = 'Bossbot'; //default value
   static const String bossbot = 'Bossbot';
   static const String lawbot = 'Lawbot';
   static const String cashbot = 'Cashbot';
@@ -19,7 +20,7 @@ class _HomePage extends State<HomePage> {
 
   int numObtained = 0;
   int numNeeded = 0;
-  final TextEditingController _controller = TextEditingController();
+  TextEditingController _controller = TextEditingController();
   int output = 0;
 
   //_controller.addListener();
@@ -27,63 +28,71 @@ class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Toontown Calculator'),
-      ),
-      body: Center(
-          child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-          //select cog type
-          Column(
-              children: [
+        appBar: AppBar(
+          title: const Text('Toontown Calculator'),
+        ),
+        body: Center(
+            child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+              //select cog type
+              Column(children: [
                 const Text('Select cog type:'),
                 DropdownButton(
-                    value: cogtype,
-                    icon: const Icon(Icons.arrow_downward),
-                    elevation: 16,
-                    style: const TextStyle(color: Colors.blue),
-                    underline: Container(
-                      height: 2,
-                      color: Colors.blueAccent,
-                    ),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        cogtype = newValue!;
-                      });
-                    },
-                    items: <String>[bossbot, lawbot, cashbot, sellbot]
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
+                  value: cogtype,
+                  icon: const Icon(Icons.arrow_downward),
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.blue),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.blueAccent,
                   ),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      cogtype = newValue!;
+                    });
+                  },
+                  items: <String>[bossbot, lawbot, cashbot, sellbot]
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
               ]),
 
-          //get num obtained
-          Row(
-            children:  const <Widget>[
-              Text('Enter total # credit obtained: '),
-              Text('TEXTFIELD HERE'),
-            ]),
+              //get num obtained
+              Row(children: <Widget>[
+                const Text('Enter total # credit obtained: '),
+                Container(
+                    width: 100,
+                    height: 50,
+                    //child: Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      // keyboardType: TextInputType.number,
+                      // inputFormatters: [ FilteringTextInputFormatter.digitsOnly, ],
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: '# Already obtained',
+                        contentPadding: EdgeInsets.symmetric(vertical: 40.0),
+                      ),
+                      onChanged: (text) {
+                        setState(() {
+                          numObtained = int.parse(text);
+                        });
+                      },
+                    ))
+                //) // Expanded
+              ]),
 
-          //get num needed
-          Row(children: const <Widget> [
-            const Text('Enter total # credit needed: '),
-            const Text('TEXTFIELD HERE'),
-
-          ]),
-
-          ]
-        )
-      )
-    );
-
-
+              //get num needed
+              Row(children: const <Widget>[
+                const Text('Enter total # credit needed: '),
+                const Text('TEXTFIELD HERE'),
+              ]),
+            ])));
   }
 }
-
