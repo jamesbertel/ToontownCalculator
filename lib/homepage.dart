@@ -1,7 +1,10 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'cogfacilities/calculation.dart';
 
 class HomePage extends StatefulWidget {
   // const HomePage({Key? key, required this.title}) : super(key: key);
@@ -17,13 +20,19 @@ class _HomePage extends State<HomePage> {
   static const String lawbot = 'Lawbot';
   static const String cashbot = 'Cashbot';
   static const String sellbot = 'Sellbot';
+  String output = "You need: ";
 
   int numObtained = 0;
   int numNeeded = 0;
-  TextEditingController _controller = TextEditingController();
-  int output = 0;
 
-  //_controller.addListener();
+  TextEditingController _controllerA = TextEditingController();
+  TextEditingController _controllerB = TextEditingController();
+
+  void updateText(){
+    setState(() {
+      output = calculation(cogtype, numObtained, numNeeded);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,21 +47,27 @@ class _HomePage extends State<HomePage> {
         body: SingleChildScrollView(
           child: Center( // WHOLE FRAME
           child: Column(
-
           children: <Widget>[
+
+            Text(output,
+           textAlign: TextAlign.center,
+           style: const TextStyle(
+             fontSize: 40.0,
+             color: Colors.amber,
+             fontFamily: "Caveat",
+             fontWeight: FontWeight.w700
+           )) ,// OUTPUT TEXT
 
           Container( // INPUT
           padding: EdgeInsets.all(8.0),
           alignment: Alignment.center,
           width: size.shortestSide,
-          height: size.longestSide,
+          color: Colors.teal,
           child: Column(
-        // crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-
           children: <Widget>[
-            //select cog type
 
+            //select cog type
             Column(children: [
               const Text('Select cog type:'),
               DropdownButton(
@@ -85,11 +100,9 @@ class _HomePage extends State<HomePage> {
               Container(
                   width: 100,
                   height: 50,
-                  //child: Expanded(
                   child: TextField(
-                    controller: _controller,
-                    // keyboardType: TextInputType.number,
-                    // inputFormatters: [ FilteringTextInputFormatter.digitsOnly, ],
+                    controller: _controllerA,
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: '# Already obtained',
@@ -104,12 +117,35 @@ class _HomePage extends State<HomePage> {
             ]),
 
             //get num needed
-            Row(children: const <Widget>[
+            Row(children: <Widget>[
               const Text('Enter total # credit needed: '),
-              const Text('TEXTFIELD HERE'),
+              Container(
+                  width: 200,
+                  height: 50,
+                  child: TextField(
+                    controller: _controllerB,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Total # Needed',
+                      contentPadding: EdgeInsets.symmetric(vertical: 40.0),
+                    ),
+                    onChanged: (text) {
+                      setState(() {
+                        numNeeded = int.parse(text);
+                      });
+                    },
+                  ))
             ]),
-          ]))] // END INPUT CONTAINER
-        )))
+          ])
+          ), // END INPUT CONTAINER
+
+          TextButton(onPressed: () {
+            updateText();
+          }, child: Text("CALCULATE"))
+          ]
+
+          )))
     );
   }
 }
