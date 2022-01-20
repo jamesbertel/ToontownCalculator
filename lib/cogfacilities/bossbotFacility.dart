@@ -1,22 +1,21 @@
-import 'package:flutter/material.dart';
-import '../main.dart';
-import '../homepage.dart';
-import 'calculation.dart';
+import '../calculation.dart';
 
 class BossbotGolfCourse implements ICogFacility {
 
+  @override
   String printStats(List<int> nums){
     //TEST:
     //print("You need :\n\t" + nums.get(0) + " back nine(s),\n\t");
     //print(nums.get(1) + " middle six(es), and \n\t");
     //print(nums.get(2) + " front three(s).\n");
-    String x;
-    x="You need :\n  " + nums[0].toString() + " back nine(s),\n  ";
-    x+=nums[1].toString() + " middle six(es), and \n  ";
+    String x = "";
+    x="You need :\n  " + nums[0].toString() + " back nine(s),\n";
+    x+=nums[1].toString() + " middle six(es), and \n";
     x+=nums[2].toString() + " front three(s).\n";
     return x;
   }
 
+  @override
   String calculateStats(int totalObtained, int totalNeeded) {
 
     List<int> golfCourses = [];
@@ -55,10 +54,11 @@ class BossbotGolfCourse implements ICogFacility {
     golfCourses.add(z); //number of front threes added
     return printStats(golfCourses);
   }
+}
+
 /*
     TYPE            STOCK OPTIONS
     Front Three     764
     Middle Six      1874
     Back Nine       3350
      */
-}
