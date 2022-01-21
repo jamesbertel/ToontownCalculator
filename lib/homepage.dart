@@ -73,8 +73,8 @@ class _HomePage extends State<HomePage> {
               // IN
               Expanded(
                   flex: 2,
+                  // INPUT CONTAINER
                   child: Container(
-                      // INPUT CONTAINER
                       padding: const EdgeInsets.all(8.0),
                       alignment: Alignment.center,
                       width: size.shortestSide,
@@ -123,13 +123,14 @@ class _HomePage extends State<HomePage> {
 
                             //get num obtained
                             Expanded(
-                              flex: 1,
-                              child: Row(children: <Widget>[
-                                const Text('Enter total # \ncredit obtained: ',
-                                    style: _inputLabelTextStyle),
-                                Flexible(
-                                  // flex: 2,
-                                  child: TextField(
+                                flex: 1,
+                                child: Row(children: <Widget>[
+                                  const Text(
+                                      'Enter total # \ncredit obtained: ',
+                                      style: _inputLabelTextStyle),
+                                  Flexible(
+                                      // flex: 2,
+                                      child: TextField(
                                     onChanged: (text) {
                                       setState(() {
                                         numObtained = int.parse(text);
@@ -144,10 +145,8 @@ class _HomePage extends State<HomePage> {
                                     controller: _controllerA,
                                     keyboardType: TextInputType.number,
                                     textInputAction: TextInputAction.next,
-                                  ),
-                                ),
-                              ]),
-                            ),
+                                  )),
+                                ])),
 
                             //get num needed
                             Expanded(
@@ -158,36 +157,35 @@ class _HomePage extends State<HomePage> {
                                   Flexible(
                                       // flex: 2,
                                       child: TextField(
-                                    controller: _controllerB,
-                                    keyboardType: TextInputType.number,
-                                    textInputAction: TextInputAction.done,
-                                    decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      labelText: 'Total # Needed',
-                                      contentPadding:
-                                          EdgeInsets.symmetric(vertical: 40.0),
-                                    ),
-                                    onChanged: (text) {
-                                      setState(() {
-                                        numNeeded = int.parse(text);
-                                      });
-                                    },
-                                  ))
+                                          controller: _controllerB,
+                                          keyboardType: TextInputType.number,
+                                          textInputAction: TextInputAction.done,
+                                          decoration: const InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            labelText: 'Total # Needed',
+                                            contentPadding:
+                                                EdgeInsets.symmetric(
+                                                    vertical: 40.0),
+                                          ),
+                                          onChanged: (text) {
+                                            setState(() {
+                                              numNeeded = int.parse(text);
+                                            });
+                                          }))
                                 ])),
                           ]))), // END INPUT CONTAINER
 
               // CALCULATE BUTTON
               Expanded(
-                flex: 1,
-                child: Container(
-                    alignment: Alignment.center,
-                    child: ElevatedButton(
-                      child: const Text("CALCULATE"),
-                      onPressed: () {
-                        updateText();
-                      },
-                    )),
-              )
+                  flex: 1,
+                  child: Container(
+                      alignment: Alignment.center,
+                      child: ElevatedButton(
+                        child: const Text("CALCULATE"),
+                        onPressed: () {
+                          updateText();
+                        },
+                      )))
             ])));
   }
 }
