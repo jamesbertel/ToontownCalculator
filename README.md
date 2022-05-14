@@ -19,5 +19,4 @@ Not with software architecture it isn't! The backend of the app is technically a
 
 ## You keep saying "Coming soon"--when will this project be finished?
 
-if all goes well, before February. 
-otherwise, hopefully by April. 
+Lol
